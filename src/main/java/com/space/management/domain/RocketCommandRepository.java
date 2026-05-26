@@ -1,8 +1,10 @@
 package com.space.management.domain;
 
+import com.space.management.repository.RocketEntity;
 import java.util.Optional;
 
 public interface RocketCommandRepository {
-    void save(Rocket rocket);
-    Optional<Rocket> findByName(String name);
+    void save(RocketEntity rocket);
+    Optional<RocketEntity> findByName(String name);
+    void delete(String name);
 }

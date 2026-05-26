@@ -2,17 +2,13 @@ package com.space.management.application.command;
 
 import com.space.management.common.exception.CommandValidationException;
 
-public record AssignRocketCommand(
-    String rocketName, String missionName
+public record DeleteMissionCommand(
+    String missionName
 ) {
 
-    public AssignRocketCommand {
+    public DeleteMissionCommand {
         if (missionName == null || missionName.isBlank()) {
             throw new CommandValidationException("Mission name cannot be null or blank");
-        }
-
-        if (rocketName == null || rocketName.isBlank()) {
-            throw new CommandValidationException("Rocket name cannot be null or blank");
         }
     }
 }

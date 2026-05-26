@@ -2,27 +2,29 @@ package com.space.management.domain;
 
 import com.space.management.common.RocketStatus;
 import com.space.management.common.exception.BusinessValidationException;
+import com.space.management.common.exception.ErrorMessage;
 
 import static com.space.management.common.RocketStatus.IN_SPACE;
 import static com.space.management.common.RocketStatus.ON_GROUND;
+import static com.space.management.common.exception.ErrorMessage.*;
 import static com.space.management.common.exception.ErrorMessage.ROCKET_ALREADY_ASSIGNED;
 
-public class Rocket {
+class Rocket {
     private final String name;
     private RocketStatus status;
     private String assignedMissionName;
 
-    public Rocket(String name, RocketStatus status, String assignedMissionName) {
+    Rocket(String name, RocketStatus status, String assignedMissionName) {
         this.name = name;
         this.status = status;
         this.assignedMissionName = assignedMissionName;
     }
 
-    public static Rocket createNew(String name) {
+    static Rocket createNew(String name) {
         return new Rocket(name, ON_GROUND, null);
     }
 
-    public void assignToMission(String missionName) {
+    void assignToMission(String missionName) {
         if (this.assignedMissionName != null && !this.assignedMissionName.equals(missionName)) {
             throw new BusinessValidationException(ROCKET_ALREADY_ASSIGNED);
         }
@@ -30,19 +32,28 @@ public class Rocket {
         this.status = IN_SPACE;
     }
 
-    public void changeStatus(RocketStatus newStatus) {
+    void verifyCanBeDeleted() {
+        if (assignedMissionName != null && !assignedMissionName.isBlank()) {
+            throw new BusinessValidationException(
+                INVALID_MISSION_STATUS,
+                "Cannot delete rocket: " + name + " because it is assigned to mission: " + assignedMissionName
+            );
+        }
+    }
+
+    void changeStatus(RocketStatus newStatus) {
         this.status = newStatus;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public RocketStatus getStatus() {
+    RocketStatus getStatus() {
         return status;
     }
 
-    public String getAssignedMissionName() {
+    String getAssignedMissionName() {
         return assignedMissionName;
     }
 }

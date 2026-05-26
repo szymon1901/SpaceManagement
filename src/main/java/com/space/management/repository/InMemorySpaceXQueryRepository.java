@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class InMemorySpaceXQueryRepository implements SpaceXQueryRepository {
+class InMemorySpaceXQueryRepository implements SpaceXQueryRepository {
     private final SpaceXDataStore dataStore;
 
-    public InMemorySpaceXQueryRepository(SpaceXDataStore dataStore) {
+     InMemorySpaceXQueryRepository(SpaceXDataStore dataStore) {
         this.dataStore = dataStore;
     }
 
