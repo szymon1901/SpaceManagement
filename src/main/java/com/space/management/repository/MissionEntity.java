@@ -1,8 +1,9 @@
 package com.space.management.repository;
 
 import com.space.management.common.MissionStatus;
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 public class MissionEntity {
     private String name;
@@ -12,7 +13,7 @@ public class MissionEntity {
     public MissionEntity(String name, MissionStatus status, List<String> rocketNames) {
         this.name = name;
         this.status = status;
-        this.rocketNames = rocketNames != null ? List.copyOf(rocketNames) : List.of();
+        this.rocketNames = rocketNames != null ? List.copyOf(rocketNames) : emptyList();
     }
 
     public String getName() {

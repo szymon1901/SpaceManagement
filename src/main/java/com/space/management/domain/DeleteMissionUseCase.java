@@ -42,8 +42,7 @@ class DeleteMissionUseCase {
         rocketRepository.findByName(rocketName)
             .map(mapper::toDomain)
             .ifPresent(rocket -> {
-                rocket.assignToMission(null);
-
+                rocket.releaseFromMission();
                 saveRocketState(rocket);
             });
     }

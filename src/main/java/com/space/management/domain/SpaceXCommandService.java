@@ -26,8 +26,8 @@ class SpaceXCommandService implements SpaceXCommandUseCase {
         this.addMissionUseCase = new AddMissionUseCase(missionRepository, mapper);
         this.assignRocketUseCase = new AssignRocketUseCase(rocketRepository, missionRepository, mapper);
         this.assignMultipleRocketsUseCase = new AssignMultipleRocketsUseCase(rocketRepository, missionRepository, mapper);
-        this.changeRocketStatusUseCase = new ChangeRocketStatusUseCase(rocketRepository, mapper);
-        this.changeMissionStatusUseCase = new ChangeMissionStatusUseCase(missionRepository, mapper);
+        this.changeRocketStatusUseCase = new ChangeRocketStatusUseCase(rocketRepository, missionRepository, mapper);
+        this.changeMissionStatusUseCase = new ChangeMissionStatusUseCase(missionRepository, rocketRepository, mapper);
         this.deleteRocketUseCase = new DeleteRocketUseCase(rocketRepository, mapper);
         this.deleteMissionUseCase = new DeleteMissionUseCase(missionRepository, rocketRepository, mapper);
     }

@@ -5,7 +5,8 @@ import com.space.management.common.exception.CommandValidationException;
 
 public record ChangeRocketStatusCommand(
     String rocketName,
-    RocketStatus newStatus) {
+    RocketStatus newStatus
+) {
 
     public ChangeRocketStatusCommand {
         if (newStatus == null) {

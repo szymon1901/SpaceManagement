@@ -5,7 +5,8 @@ import com.space.management.common.exception.CommandValidationException;
 
 public record ChangeMissionStatusCommand(
     String missionName,
-    MissionStatus newStatus) {
+    MissionStatus newStatus
+) {
     public ChangeMissionStatusCommand {
         if (newStatus == null) {
             throw new CommandValidationException("Mission status cannot be null");
